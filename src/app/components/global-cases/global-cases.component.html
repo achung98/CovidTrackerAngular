@@ -1,0 +1,32 @@
+<div class="wrapper">
+  <mat-card class="cases three">
+    <mat-card-content>
+      <h1>Recovered</h1>
+      <p>{{ recovered.num }}</p>
+      <h1>Recovered Difference</h1>
+      <p>{{ recovered.diff }}</p>
+      <h1>Recovery Rate</h1>
+      <p>{{ recovered.rate }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="cases">
+    <mat-card-content>
+      <h1>Worldwide Cases</h1>
+      <p>{{ current.num }}</p>
+      <h1>Latest Update</h1>
+      <p>{{ current.latest_update }}</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="cases three">
+    <mat-card-content>
+      <h1>Deaths</h1>
+      <p>{{ deaths.num }}</p>
+      <h1>Deaths Difference</h1>
+      <p>{{ deaths.diff }}</p>
+      <h1>Fatality Rate</h1>
+      <p>{{ deaths.rate }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
