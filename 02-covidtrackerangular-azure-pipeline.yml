@@ -17,7 +17,7 @@ stages:
         steps:
           - bash: echo Should run unit tests here
   - stage: Dockerize
-    dependsOn: Compile
+    dependsOn: Test
     jobs:
       - job: BuildAndPush
         displayName: Build and Push Docker Image
