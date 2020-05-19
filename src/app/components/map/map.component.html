@@ -1,5 +1,13 @@
-<div class="map-container">
+<div class="map-container" id="map-container">
   <div class="map-frame">
     <div id="map"></div>
   </div>
+</div>
+
+<div *ngIf="loading">
+  <mat-progress-spinner
+    class="loadingClass"
+    mode="indeterminate"
+  >
+  </mat-progress-spinner>
 </div>

@@ -29,13 +29,13 @@ export class GlobalCasesComponent implements OnInit {
       this.recovered = {
         num: res.recovered,
         diff: res.recovered_diff,
-        rate: ( res.recovered / res.confirmed ) * 100
+        rate: Number((( res.recovered / res.confirmed ) * 100).toFixed(4))
       };
 
       this.deaths = {
         num: res.deaths,
         diff: res.deaths_diff,
-        rate: res.fatality_rate * 100
+        rate: Number((res.fatality_rate * 100).toFixed(4))
       }
     })
   }
