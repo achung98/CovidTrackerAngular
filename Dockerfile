@@ -1,10 +1,10 @@
-FROM node:10-alpine AS builder
-WORKDIR /app
+FROM node:12.7-alpine AS build
+WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm i
 RUN npm install -g @angular/cli --unsafe-perm
-COPY . /app
+COPY . .
 RUN npm run build --prod
 
-FROM nginx:1.15.8-alpine
-COPY --from=builder /dist/CovidTracker/ /usr/share/nginx/html
+FROM nginx:1.17.1-alpine
+COPY --from=build /usr/src/app/dist/CovidTracker/ /usr/share/nginx/html
