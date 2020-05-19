@@ -1,6 +1,6 @@
 # CovidTracker
 
-* This project was made as a learning process *
+*This project was made as a learning process*
 
 - This project will show the global data for Covid-19 cases.
 - The project includes a map that shows data regarding Covid-19 from different countries. You will need to hover over the circles to view this data.
