@@ -1,14 +1,10 @@
 FROM node:10-alpine
 WORKDIR /app
-
-# add `/app/node_modules/.bin` to $PATH
-ENV PATH /app/node_modules/.bin:$PATH
-
 COPY package*.json ./
 RUN npm i
 RUN npm install -g @angular/cli --unsafe-perm
 COPY . /app
-EXPOSE 4200
+RUN npm run build --prod
 
-# start app
-CMD ng serve
+FROM nginx:1.15.8-alpine
+COPY --from=builder /usr/src/app/dist/SampleApp/ /usr/share/nginx/html
