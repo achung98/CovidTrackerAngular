@@ -1,27 +1,9 @@
 # CovidTracker
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.25.
+* This project was made as a learning process *
 
-## Development server
+- This project will show the global data for Covid-19 cases.
+- The project includes a map that shows data regarding Covid-19 from different countries. You will need to hover over the circles to view this data.
+- If you click one of the circles in the map, it will display the data of the Covid-19 cases of the country provinces/states. Some countries will not have the required data. Some countries that include the data are: United States, Canada, Australia, and China.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+The backend of this project is in the following url: https://github.com/achung98/CovidTracker
