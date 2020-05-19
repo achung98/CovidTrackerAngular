@@ -6,7 +6,7 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package*.json ./
 RUN npm i
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli --unsafe-perm
 COPY . /app
 EXPOSE 4200
 
