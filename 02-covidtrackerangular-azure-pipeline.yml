@@ -25,6 +25,10 @@ stages:
         - task: Docker@2
           inputs:
             containerRegistry: 'Docker Hub connection'
+            command: 'login'
+        - task: Docker@2
+          inputs:
+            containerRegistry: 'Docker Hub connection'
             repository: 'achung98/covid-tracker-angular'
             command: 'buildAndPush'
             Dockerfile: '**/Dockerfile'
