@@ -22,10 +22,6 @@ stages:
       - job: BuildAndPush
         displayName: Build and Push Docker Image
         steps:
-        - task: DockerInstaller@0
-          inputs:
-            dockerVersion: '17.09.0-ce'
-        - script: sudo docker login -u achung98 -p $(dockerpass)
         - task: Docker@2
           inputs:
             containerRegistry: 'Docker Hub connection'
