@@ -61,50 +61,70 @@ export class MapComponent implements OnInit {
     }
   }
 
-  private moreInfomation(country: string, iso: string): any {
+  public moreInfomation(country: string, iso: string): any {
     return () => {
+      if(this.findCachedProvinces(country)) {
+        this.loading = true;
+        document.getElementById('map-container').style.opacity = '0.8';
+        this.http.getCountryData(iso).subscribe(res => {
+          if(res[0].province && (res[0].lat && res[0].lon)) {
+            this.circles[country].remove();
+            let multipleCircles: any[] = [];
+            for(let province of res) {
+              if(province.lat != null && province.lon != null) {
+                let perc = province.perc.toFixed(4);
+                let tooltipData = `
+                  <strong>${province.province}</strong><br>
+                  <hr>
+                  <strong>Cases:</strong> ${province.cases}<br>
+                  <strong>Cured:</strong> ${province.cured}<br>
+                  <strong>Deaths:</strong> ${province.dead}<br>
+                  <strong>Fatality Rate:</strong> ${province.rate}<br>
+                  <strong>Country Percentage:</strong> ${perc}%<br>
+                `;
+
+                multipleCircles.push(
+                  L.circle([province.lat, province.lon], {radius: province.cases})
+                  .bindTooltip(tooltipData, {
+                    sticky: true
+                  })
+                  .on('click', this.returnToCountry(country))
+                )
+              }
+            }
+            this.multipleCircles[country] = L.layerGroup(multipleCircles)
+            .addTo(this.map);
+          }
+          document.getElementById('map-container').style.opacity = '1';
+          this.loading = false;
+        });
+      }
+    }
+  }
+
+  private findCachedProvinces(country: string): boolean {
+    if(this.multipleCircles[country]) {
+      this.circles[country].remove();
       this.loading = true;
       document.getElementById('map-container').style.opacity = '0.8';
-      this.http.getCountryData(iso).subscribe(res => {
-        if(res[0].province && (res[0].lat && res[0].lon)) {
-          this.circles[country].remove();
-          let multipleCircles: any[] = [];
-          for(let province of res) {
-            if(province.lat != null && province.lon != null) {
-              let perc = province.perc.toFixed(4);
-              let tooltipData = `
-                <strong>${province.province}</strong><br>
-                <hr>
-                <strong>Cases:</strong> ${province.cases}<br>
-                <strong>Cured:</strong> ${province.cured}<br>
-                <strong>Deaths:</strong> ${province.dead}<br>
-                <strong>Fatality Rate:</strong> ${province.rate}<br>
-                <strong>Country Percentage:</strong> ${perc}%<br>
-              `;
 
-              multipleCircles.push(
-                L.circle([province.lat, province.lon], {radius: province.cases})
-                .bindTooltip(tooltipData, {
-                  sticky: true
-                })
-                .on('click', this.returnToCountry(country))
-              )
-            }
-          }
-          this.multipleCircles[country] = L.layerGroup(multipleCircles)
-          .addTo(this.map);
-        }
-        document.getElementById('map-container').style.opacity = '1';
+      setTimeout(() => {
         this.loading = false;
-      });
+          document.getElementById('map-container').style.opacity = '1';
+          this.multipleCircles[country]
+          .addTo(this.map);
+      }, 500);
+
+      return false;
     }
+    return true;
   }
 
   private returnToCountry(country: string): any {
     return () => {
       this.loading = true;
       document.getElementById('map-container').style.opacity = '0.8';
-      this.multipleCircles[country].clearLayers();
+      this.map.removeLayer(this.multipleCircles[country]);
       setTimeout(() => {
         this.loading = false;
           document.getElementById('map-container').style.opacity = '1';
