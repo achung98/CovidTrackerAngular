@@ -8,4 +8,4 @@
 
 The backend of this project is in the following url: https://github.com/achung98/CovidTracker
 
-This project is deployed on: *-------*
+This project is deployed on: https://rocky-tundra-50103.herokuapp.com/
