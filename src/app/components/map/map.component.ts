@@ -44,7 +44,7 @@ export class MapComponent implements OnInit {
   public parseCountriesData(countries: any): any {
     for(let country in countries) {
       let tooltipData = `
-        <strong>${country}</strong><br>
+        <strong>${countries[country].country}</strong><br>
         <hr>
         <strong>Cases:</strong> ${countries[country].cases}<br>
         <strong>Today:</strong> ${countries[country].today}<br>
