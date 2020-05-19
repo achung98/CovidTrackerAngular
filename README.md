@@ -7,3 +7,5 @@
 - If you click one of the circles in the map, it will display the data of the Covid-19 cases of the country provinces/states. Some countries will not have the required data. Some countries that include the data are: United States, Canada, Australia, and China.
 
 The backend of this project is in the following url: https://github.com/achung98/CovidTracker
+
+This project is deployed on: *-------*
