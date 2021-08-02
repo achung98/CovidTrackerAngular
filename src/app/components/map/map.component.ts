@@ -16,6 +16,7 @@ export class MapComponent implements OnInit {
   private circles: any = {};
   private multipleCircles: any = {};
   private loading: boolean = false;
+  private ratio = 25;
 
   constructor(private http: HttpClientService) { }
 
@@ -52,7 +53,7 @@ export class MapComponent implements OnInit {
         <strong>Deaths:</strong> ${countries[country].dead}
       `;
 
-      this.circles[country] = L.circle([countries[country].lat, countries[country].lon], {radius: countries[country].cases})
+      this.circles[country] = L.circle([countries[country].lat, countries[country].lon], {radius: countries[country].cases/this.ratio})
       .bindTooltip(tooltipData, {
         sticky: true
       })
@@ -84,7 +85,7 @@ export class MapComponent implements OnInit {
                 `;
 
                 multipleCircles.push(
-                  L.circle([province.lat, province.lon], {radius: province.cases})
+                  L.circle([province.lat, province.lon], {radius: province.cases/this.ratio})
                   .bindTooltip(tooltipData, {
                     sticky: true
                   })
